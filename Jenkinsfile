@@ -43,7 +43,7 @@ pipeline {
 
             steps {
 
-                bat 'mvn deploy'
+                bat 'mvn deploy -s C:\\ProgramData\\Jenkins\\.jenkins\\settings.xml'
 
             }
 
