@@ -1,5 +1,5 @@
 FROM nginx:latest
 
-COPY index.html /usr/share/nginx/html/index.html
+COPY src/main/webapp/index.html /usr/share/nginx/html/index.html
 
 EXPOSE 80
