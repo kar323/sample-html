@@ -8,7 +8,7 @@ pipeline {
 
     environment {
 
-        IMAGE_NAME = "yourdockerhub/sample-html"
+        IMAGE_NAME = "kar233/sample-html"
 
     }
 
@@ -17,7 +17,7 @@ pipeline {
         stage('Checkout') {
 
             steps {
-                git 'https://github.com/username/sample-html.git'
+                git 'https://github.com/kar323/sample-html.git'
             }
 
         }
@@ -26,7 +26,7 @@ pipeline {
 
             steps {
 
-                sh 'mvn clean package'
+                bat 'mvn clean package'
 
             }
 
@@ -38,7 +38,7 @@ pipeline {
 
                 withSonarQubeEnv('SonarQube') {
 
-                    sh 'mvn sonar:sonar'
+                    bat 'mvn sonar:sonar -Dsonar.projectKey=sample-html'
 
                 }
 
@@ -50,7 +50,7 @@ pipeline {
 
             steps {
 
-                sh 'mvn deploy'
+                bat 'mvn deploy'
 
             }
 
@@ -60,7 +60,7 @@ pipeline {
 
             steps {
 
-                sh 'docker build -t $IMAGE_NAME .'
+                bat 'docker build -t $IMAGE_NAME .'
 
             }
 
@@ -70,13 +70,14 @@ pipeline {
 
             steps {
 
-                withCredentials([usernamePassword(credentialsId: 'dockerhub',
+                withCredentials([usernamePassword(
+                        credentialsId: 'dockerhub-credentials',
 
                         usernameVariable: 'USER',
 
                         passwordVariable: 'PASS')]) {
 
-                    sh 'echo $PASS | docker login -u $USER --password-stdin'
+                    bat 'docker login -u %USER% -p %PASS%'
 
                 }
 
@@ -88,7 +89,7 @@ pipeline {
 
             steps {
 
-                sh 'docker push $IMAGE_NAME'
+                bat 'docker push %IMAGE_NAME%'
 
             }
 
