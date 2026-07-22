@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.demo</groupId>
-    <artifactId>sample-html-app</artifactId>
+    <artifactId>sample-html</artifactId>
     <version>1.0</version>
 
     <packaging>war</packaging>
 
     <build>
 
-        <finalName>sample-html-app</finalName>
+        <finalName>sample-html</finalName>
 
         <plugins>
 
