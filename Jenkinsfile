@@ -14,15 +14,7 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-
-            steps {
-                git branch: 'main',
-            url: 'https://github.com/kar323/sample-html.git'
-            }
-
-        }
-
+        
         stage('Build') {
 
             steps {
